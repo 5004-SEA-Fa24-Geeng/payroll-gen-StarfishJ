@@ -33,6 +33,6 @@ class PayStubTest {
 
     @Test
     void toCSV() {
-        assertEquals("\"Eren Yeager\",541.45,158.55,6541.45,1517.55", payStub.toCSV());
+        assertEquals("Eren Yeager,541.45,158.55,6541.45,1517.55", payStub.toCSV());
     }
 }
