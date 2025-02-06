@@ -40,3 +40,11 @@ Having heard these facts, your employer would like data about their salaries to 
 Think through the issue / making sure to cite any resources you use to help you better understand the topic. Then write a paragraph on what changes you would need to make to the system. For example, would there be any additional data points you would need to store in the employee file? Why? Consider what point in the payroll process you may want to look at the data, as different people could have different pretax benefits and highlight that. 
 
 The answer to this is mostly open. We ask that you cite at least two sources to show your understanding of the issue. The TAs will also give feedback on your answer, though will be liberal in grading as long as you show a good faith effort to understand the issue and making an effort to think about how your design to could help meet your employer's goals of salary equity. 
+
+* The first category I would think of is Job Role and Level. For example, we would need data of entry, mid, senior positions to ensure that employees are compared in a reasonable range.[^2]
+* The second category would be Experiences and education. For example, we would need education level like bachelor, master, PHD and others.[^1]
+* I think the data should be reviewed before processing salaries each pay period, initiate a review process using the collected data to analyze pay disparities. 
+
+[^1] Global Gender Gap Report 2021. https://www3.weforum.org/docs/WEF_GGGR_2021.pdf  Accessed: 2025-2-6
+[^2] Women in the workplace. https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/women-in-the-workplace  Accessed: 2025-2-6
+
