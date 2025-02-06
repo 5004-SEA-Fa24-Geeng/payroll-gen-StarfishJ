@@ -1,75 +1,107 @@
 package student;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
-
-/**
- * An interface for the concept of the employee.
- * 
- * DO NOT MODIFY THIS FILE! (unless you are cleaning up comments/style changes)
- * 
- * This file is provided, and we will be grading every function implemented in as a unit test for
- * both SalaryEmployee and HourlyEmployee.
- */
-public interface IEmployee {
-
+public abstract class Employee implements IEmployee {
+    protected String name;
+    protected String id;
+    protected double payRate;
+    protected double ytdEarnings;
+    protected double ytdTaxesPaid;
+    protected double pretaxDeductions;
+    protected final double taxRate = 0.2265;
 
     /**
+     * Constructor with parameters
+     * @param name
+     * @param id
+     * @param payRate
+     * @param ytdEarnings
+     * @param ytdTaxesPaid
+     * @param pretaxDeductions
+     */
+    public Employee(String name, String id, double payRate, double ytdEarnings, double ytdTaxesPaid, double pretaxDeductions) {
+        this.name = name;
+        this.id = id;
+        this.payRate = payRate;
+        this.ytdEarnings = ytdEarnings;
+        this.ytdTaxesPaid = ytdTaxesPaid;
+        this.pretaxDeductions = pretaxDeductions;
+    }
+    /**
      * Gets the employee's name.
-     * 
      * @return the name of the employee
      */
-    String getName();
+    @Override
+    public String getName() {
+        return this.name;
+    }
 
     /**
      * Gets the employee's ID.
-     * 
      * @return the ID of the employee
      */
-    String getID();
+    @Override
+    public String getID() {
+        return this.id;
+    }
 
     /**
      * Gets the employee's pay rate.
-     * 
      * @return the pay rate of the employee
      */
-    double getPayRate();
-
+    @Override
+    public double getPayRate() {
+        return this.payRate;
+    }
 
     /**
      * Gets the employee's Type as a string.
-     * 
+     * <p>
      * Either "HOURLY" or "SALARY" depending on the type of employee.
-     * 
+     * <p>
      * You may want to consider using an enum to store
      * the type, and using .name() to get the string representation.
-     * 
      * @return the type of the employee as a string
      */
-    String getEmployeeType();
+
+    public abstract String getEmployeeType();
 
     /**
      * Gets the YTD earnings of the employee.
-     * 
      * @return the YTD earnings of the employee
      */
-    double getYTDEarnings();
+    @Override
+    public double getYTDEarnings() {
+        return ytdEarnings;
+    }
 
     /**
      * Gets the YTD taxes paid by the employee.
-     * 
      * @return the YTD taxes paid by the employee
      */
-    double getYTDTaxesPaid();
+    @Override
+    public double getYTDTaxesPaid() {
+        return ytdTaxesPaid;
+    }
 
+    /**
+     * abstract method for gross pay calculation
+     * @param hoursWorked hours of work done
+     */
+    public abstract double calculateGrossPay(double hoursWorked);
     /**
      * Gets pretax deductions for the employee. Yes, on a normal paycheck this varies as either set
      * amounts or percents, and often more than one type of deduction.
-     * 
+     * <p>
      * For now, you can just assume a single pretax deduction as a whole dollar amount.
-     * 
+     *
      * @return the pretax deductions for the employee
      */
-    double getPretaxDeductions();
-
+    @Override
+    public double getPretaxDeductions() {
+        return pretaxDeductions;
+    }
 
     /**
      * Runs the employee's payroll.
@@ -100,25 +132,41 @@ public interface IEmployee {
      * @param hoursWorked the hours worked for the pay period
      * @return the pay stub for the current pay period
      */
-    double runPayroll(double hoursWorked);
 
-
-    double calculateGrossPay(double hoursWorked);
+    public double runPayroll(double hoursWorked) {
+        if (hoursWorked < 0) { return 0; }
+        double grossPay = calculateGrossPay(hoursWorked);
+        double taxable = grossPay - pretaxDeductions;
+        if (taxable < 0) { taxable = 0; }
+        double taxes = taxable * taxRate;
+        ytdTaxesPaid += taxes;
+        double netPay = grossPay - pretaxDeductions - taxes;
+        ytdEarnings += netPay;
+        return netPay;
+    }
 
     /**
      * Converts the employee to a CSV string.
-     * 
+     * <p>
      * Format of the String s as follows:
-     * 
+     * <p>
      * employee_type,name,ID,payRate,pretaxDeductions,YTDEarnings,YTDTaxesPaid
-     * 
+     * <p>
      * employee_type has the options for HOURLY or SALARY.
-     * 
+     * <p>
      * You do not have to worry about commas in the name or any other field.
-     * 
+     *
      * @return the employee as a CSV string
      */
-    String toCSV();
-
-
+    @Override
+    public String toCSV() {
+        return String.format("%s,%s,%s,%.2f,%.2f,%.2f,%.2f",
+                getEmployeeType(),
+                name,
+                id,
+                payRate,
+                pretaxDeductions,
+                ytdEarnings,
+                ytdTaxesPaid);
+    }
 }

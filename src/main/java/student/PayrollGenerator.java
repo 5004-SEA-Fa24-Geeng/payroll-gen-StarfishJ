@@ -6,19 +6,13 @@ import java.util.LinkedList;
 
 /**
  * Main driver for the PayrollGenerator program.
- * 
  * Students, you are free to modify this file as needed, but you need to leave in the parts where we
  * can pass in the employee and payroll files as arguments.
- * 
  * Grading wise, we will both be using unit tests, and running your program with different employee
  * files. We also will create a separate output file for each.
- * 
- * 
  * To run the program, you can use the following command:
- * 
  * java student.PayrollGenerator -e employees_mine.csv -t time_cards.csv -o pay_stubs_mine.csv or
  * java student.PayrollGenerator The above defaults listed below.
- * 
  * We also suggest meeting with a TA and learning how to add command line arguments
  * in your IDE, as it will make testing and debugging easier.
  **/
@@ -30,7 +24,6 @@ public final class PayrollGenerator {
     /** default time card file name. */
     private static final String DEFAULT_TIME_CARD_FILE = "resources/time_cards.csv";
 
-
     /**
      * private constructor to prevent instantiation.
      */
@@ -40,7 +33,6 @@ public final class PayrollGenerator {
 
     /**
      * Main driver for the program.
-     * 
      * @param args command line arguments
      */
     public static void main(String[] args) {
@@ -61,14 +53,34 @@ public final class PayrollGenerator {
 
         List<IPayStub> payStubs = new LinkedList<>();
 
-
         // now we suggest looping through the timeCardList and for each timecard, find
         // the matching employee and generate a new paystub object. Then add that paystub
         // to the payStubs list. - remember, you can use the employee ID to match the employee
         // to the time card. Also remember if the value is negative, you just skip that payStub
         // as it is invalid, but if is 0, you still generate a paystub, but the amount is 0.
 
-        //YOUR CODE HERE
+        for(ITimeCard timeCard : timeCardList) {
+            for(IEmployee employee : employees) {
+                if (timeCard.getEmployeeID().equals(employee.getID())) {
+                    double hoursWorked = timeCard.getHoursWorked();
+                    if (hoursWorked < 0) {  // skip when hoursWorked < 0
+                        continue;
+                    }
+                    // Store previous YTD values before payroll runs
+                    double previousYTDTaxes = employee.getYTDTaxesPaid();
+
+                    // Run payroll (updates YTD values)
+                    double netPay = employee.runPayroll(hoursWorked);
+
+                    // Calculate actual taxes paid
+                    double taxes = employee.getYTDTaxesPaid() - previousYTDTaxes;
+
+                    if (netPay >= 0) {
+                        payStubs.add(new PayStub(employee.getName(),netPay,taxes,employee.getYTDEarnings(),employee.getYTDTaxesPaid()));
+                    }
+                }
+            }
+        }
       
 
          // now save out employees to a new file
@@ -103,7 +115,6 @@ public final class PayrollGenerator {
 
         /**
          * Constructor for Arguments. Setup as private, so builder has to be used.
-         * 
          * @see #process(String[])
          */
         private Arguments() {
@@ -112,7 +123,6 @@ public final class PayrollGenerator {
 
         /**
          * Gets the employee file.
-         * 
          * @return the name of the employee file
          */
         public String getEmployeeFile() {
@@ -155,7 +165,6 @@ public final class PayrollGenerator {
 
         /**
          * Processes the arguments.
-         * 
          * @param args the arguments
          * @return an Argument object with file names added
          */

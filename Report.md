@@ -4,34 +4,32 @@ This report helps you demonstrate your understanding of the concepts. You should
 
 ## Technical Questions
 
-1. What does CSV stand for? 
-   
+1. What does CSV stand for?
+* Comma-Separated Values. Each line in the file corresponds to a row in the table, and each value in the row is separated by a comma.
 
 2. Why would you declare `List<IEmployee>` instead of `ArrayList<HourlyEmployee>`?
+* Using List<IEmployee> allows for flexibility and polymorphism. Since IEmployee is an interface, it can store different types of employees, such as HourlyEmployee and SalaryEmployee, making the code more scalable and maintainable.
 
 3. When you have one class referencing another object, such as storing that object as one of the attributes of the first class - what type of relationship is that called (between has-a and is-a)?
-
+* a has-a relationship.
 4. Can you provide an example of a has-a relationship in your code (if one exists)?
-
+* PayStub has-a employeeName because PayStub contains an attribute storing the employee’s name.
 
 5. Can you provide an example of an is-a relationship in your code (if one exists)?
-
+* In my code, SalaryEmployee is-a Employee because it extends Employee.
 
 6. What is the difference between an interface and an abstract class?
-
+* Interfaces define a contract that classes must follow but do not provide any implementation. Abstract classes can have both implemented and unimplemented methods, allowing for some shared functionality while still being incomplete. A class can implement multiple interfaces, but it can extend only one abstract class.
 
 7. What is the advantage of using an interface over an abstract class?
-
-
+* More flexibility. A class can implement multiple interfaces, but it can extend only one abstract class; Interfaces promote loose coupling, making the code easier to maintain and extend; They define a strict contract that any implementing class must follow.
 8. Is the following code valid or not? `List<int> numbers = new ArrayList<int>();`, explain why or why not. If not, explain how you can fix it. 
-
-
-9. Which class/method is described as the "driver" for your application? 
-
-
-
+* Not valid. Java does not support primitive types (int) in generics.Just replace int with Integer, `List<Integer> numbers = new ArrayList<>();`
+9. Which class/method is described as the "driver" for your application?
+* main method inside the PayrollGenerator class
 10. How do you create a temporary folder for JUnit Testing? 
-
+* @TempDir  
+  Path tempDir;
 
 ## Deeper Thinking 
 

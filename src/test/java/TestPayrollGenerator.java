@@ -1,17 +1,8 @@
-/*
- * Students, build off this class. We are providing one sample test case as file reading is new to
- * you.
- * 
- * NOTE: you may end up changing this completely depending on how you setup your project.
- * 
- * we are just using .main() as we know that is an entry point that we specified.
- * 
- */
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import student.PayrollGenerator;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
