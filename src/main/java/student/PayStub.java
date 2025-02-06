@@ -1,10 +1,25 @@
 package student;
 
 public class PayStub implements IPayStub {
+    /**
+     * The employee name in payStub.
+     */
     private String employeeName;    //The name of the employee.
+    /**
+     * The netPay in payStub.
+     */
     private double netPay;          //The net pay for the current pay period.
+    /**
+     * The taxesPaid in payStub.
+     */
     private double taxesPaid;       //The taxes paid for the current pay period.
+    /**
+     * The ytdEarnings in payStub.
+     */
     private double ytdEarnings;     //The year-to-date earnings.
+    /**
+     * The ytdTaxesPaid in payStub.
+     */
     private double ytdTaxesPaid;    //The year-to-date taxes paid.
 
     /**

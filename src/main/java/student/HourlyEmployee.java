@@ -6,6 +6,9 @@ public class HourlyEmployee extends Employee {
      * This field is set to "HOURLY" for hourly employees.
      */
     private final String employeeType = "HOURLY";           // Employee Type is HOURLY
+    /**
+     * This field is set to 1.5 for overtime multiplier.
+     */
     private static final double OVERTIMEMULTIPLIER = 1.5;   // The overtime multiplier is 1.5
     /**
      * @param name

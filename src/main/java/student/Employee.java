@@ -5,6 +5,10 @@ package student;
  * HourlyEmployee and SalaryEmployee.
  */
 public abstract class Employee implements IEmployee {
+    /**
+     * Represents an employee with specific attributes such as name, ID, pay rate,
+     * and financial information related to earnings, taxes, and deductions.
+     */
     private String name;                    //Employee name
     private String id;                      //Employee ID
     private double payRate;                 //Employee pay rate

@@ -76,7 +76,8 @@ public final class PayrollGenerator {
                     double taxes = employee.getYTDTaxesPaid() - previousYTDTaxes;
 
                     if (netPay >= 0) {
-                        payStubs.add(new PayStub(employee.getName(), netPay, taxes, employee.getYTDEarnings(), employee.getYTDTaxesPaid()));
+                        payStubs.add(new PayStub(employee.getName(), netPay, taxes, employee.getYTDEarnings(),
+                                employee.getYTDTaxesPaid()));
                     }
                 }
             }
