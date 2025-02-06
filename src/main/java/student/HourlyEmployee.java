@@ -60,6 +60,7 @@ public class HourlyEmployee extends Employee {
     @Override
     public double calculateGrossPay(double hoursWorked) {
         // overtime hours are hours excluding 40 hours
+        double payRate = getPayRate();
         if (hoursWorked >= 0 && hoursWorked <= 40) {
             return payRate * hoursWorked;
         } else  {

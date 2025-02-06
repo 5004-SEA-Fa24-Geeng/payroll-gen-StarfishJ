@@ -44,7 +44,7 @@ class HourlyEmployeeTest {
 
     @Test
     void runPayroll() {
-        assertEquals(1972.42, employee1.runPayroll(100));
+        assertEquals(1972.425, employee1.runPayroll(100));
     }
 
     @Test

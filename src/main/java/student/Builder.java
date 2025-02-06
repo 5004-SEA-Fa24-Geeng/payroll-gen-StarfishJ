@@ -1,5 +1,5 @@
 package student;
-import student.FileUtil;
+
 /** 
  * This is a static class (essentially functions) that will help you build objects from CSV strings.
  * These objects are then used in the rest of the program. Often these builders are associated
@@ -21,7 +21,7 @@ public final class Builder {
      */
     public static IEmployee buildEmployeeFromCSV(String csv) {
         String[] a = csv.split(",");
-        if (a.length != 7){
+        if (a.length != 7) {
             System.out.println("ERROR: Invalid employee data.");
         }
 
@@ -45,7 +45,7 @@ public final class Builder {
                         Double.parseDouble(a[4]));
             }
         }
-        catch (NumberFormatException e){
+        catch (NumberFormatException e) {
             System.out.println("CSV contains incorrect number");
         }
         return null;
@@ -58,7 +58,7 @@ public final class Builder {
      */
     public static ITimeCard buildTimeCardFromCSV(String csv) {
         String[] a = csv.split(",");
-        if (a.length != 2){
+        if (a.length != 2) {
             System.out.println("ERROR: CSV contains incorrect number of columns");
         }
         return new TimeCard(a[0], Double.parseDouble(a[1]));

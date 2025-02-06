@@ -3,16 +3,16 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public abstract class Employee implements IEmployee {
-    protected String name;
-    protected String id;
-    protected double payRate;
-    protected double ytdEarnings;
-    protected double ytdTaxesPaid;
-    protected double pretaxDeductions;
-    protected final double taxRate = 0.2265;
+    private String name;
+    private String id;
+    private double payRate;
+    private double ytdEarnings;
+    private double ytdTaxesPaid;
+    private double pretaxDeductions;
+    protected final double taxRate = 0.2265;  //The tax rate is 22.65%
 
     /**
-     * Constructor with parameters
+     * Constructor with parameters.
      * @param name
      * @param id
      * @param payRate
@@ -20,7 +20,8 @@ public abstract class Employee implements IEmployee {
      * @param ytdTaxesPaid
      * @param pretaxDeductions
      */
-    public Employee(String name, String id, double payRate, double ytdEarnings, double ytdTaxesPaid, double pretaxDeductions) {
+    public Employee(String name, String id, double payRate, double ytdEarnings, double ytdTaxesPaid,
+                    double pretaxDeductions) {
         this.name = name;
         this.id = id;
         this.payRate = payRate;
@@ -86,8 +87,9 @@ public abstract class Employee implements IEmployee {
     }
 
     /**
-     * abstract method for gross pay calculation
+     * abstract method for gross pay calculation.
      * @param hoursWorked hours of work done
+     * @return gross pay
      */
     public abstract double calculateGrossPay(double hoursWorked);
     /**
@@ -134,10 +136,14 @@ public abstract class Employee implements IEmployee {
      */
 
     public double runPayroll(double hoursWorked) {
-        if (hoursWorked < 0) { return 0; }
+        if (hoursWorked < 0) {
+            return 0;
+        }
         double grossPay = calculateGrossPay(hoursWorked);
         double taxable = grossPay - pretaxDeductions;
-        if (taxable < 0) { taxable = 0; }
+        if (taxable < 0) {
+            taxable = 0;
+        }
         double taxes = taxable * taxRate;
         ytdTaxesPaid += taxes;
         double netPay = grossPay - pretaxDeductions - taxes;

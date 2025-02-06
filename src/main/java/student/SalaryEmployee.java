@@ -50,6 +50,7 @@ public class SalaryEmployee extends Employee {
      */
 
     public double calculateGrossPay(double hoursWorked){
+        double payRate = getPayRate();
         return payRate / 24;
     }
 }
