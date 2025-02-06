@@ -1,7 +1,9 @@
 package student;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 
+/**
+ * This is the class which implements IEmployee interface and also the parent class of
+ * HourlyEmployee and SalaryEmployee.
+ */
 public abstract class Employee implements IEmployee {
     private String name;
     private String id;

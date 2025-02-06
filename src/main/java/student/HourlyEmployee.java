@@ -1,8 +1,8 @@
 package student;
 
 public class HourlyEmployee extends Employee {
-    private final String EMPLOYEE_TYPE = "HOURLY";
-    private static final double OVERTIME_MULTIPLIER = 1.5;
+    private final String EMPLOYEETYPE = "HOURLY";   // Employee Type is HOURLY
+    private static final double OVERTIMEMULTIPLIER = 1.5; // The overtime multiplier is 1.5
     /**
      * @param name
      * @param id
@@ -11,7 +11,8 @@ public class HourlyEmployee extends Employee {
      * @param ytdTaxesPaid
      * @param pretaxDeductions
      */
-    public HourlyEmployee(String name, String id, double payRate, double ytdEarnings, double ytdTaxesPaid, double pretaxDeductions) {
+    public HourlyEmployee(String name, String id, double payRate, double ytdEarnings, double ytdTaxesPaid,
+                          double pretaxDeductions) {
         super(name, id, payRate, ytdEarnings, ytdTaxesPaid, pretaxDeductions);
     }
 
@@ -26,7 +27,7 @@ public class HourlyEmployee extends Employee {
      */
     @Override
     public String getEmployeeType() {
-        return EMPLOYEE_TYPE;
+        return EMPLOYEETYPE;
     }
 
     /**
@@ -64,7 +65,7 @@ public class HourlyEmployee extends Employee {
         if (hoursWorked >= 0 && hoursWorked <= 40) {
             return payRate * hoursWorked;
         } else  {
-            return payRate * 40 + payRate * OVERTIME_MULTIPLIER * (hoursWorked - 40);
+            return payRate * 40 + payRate * OVERTIMEMULTIPLIER * (hoursWorked - 40);
         }
     }
 

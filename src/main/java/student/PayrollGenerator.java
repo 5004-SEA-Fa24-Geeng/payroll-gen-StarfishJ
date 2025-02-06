@@ -59,8 +59,8 @@ public final class PayrollGenerator {
         // to the time card. Also remember if the value is negative, you just skip that payStub
         // as it is invalid, but if is 0, you still generate a paystub, but the amount is 0.
 
-        for(ITimeCard timeCard : timeCardList) {
-            for(IEmployee employee : employees) {
+        for (ITimeCard timeCard : timeCardList) {
+            for (IEmployee employee : employees) {
                 if (timeCard.getEmployeeID().equals(employee.getID())) {
                     double hoursWorked = timeCard.getHoursWorked();
                     if (hoursWorked < 0) {  // skip when hoursWorked < 0
@@ -76,7 +76,7 @@ public final class PayrollGenerator {
                     double taxes = employee.getYTDTaxesPaid() - previousYTDTaxes;
 
                     if (netPay >= 0) {
-                        payStubs.add(new PayStub(employee.getName(),netPay,taxes,employee.getYTDEarnings(),employee.getYTDTaxesPaid()));
+                        payStubs.add(new PayStub(employee.getName(), netPay, taxes, employee.getYTDEarnings(), employee.getYTDTaxesPaid()));
                     }
                 }
             }

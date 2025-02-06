@@ -1,7 +1,7 @@
 package student;
 
 public class SalaryEmployee extends Employee {
-    private final String EMPLOYEE_TYPE = "SALARY";
+    private final String EMPLOYEETYPE = "SALARY";  //Employee type is "SALARY"
     /**
      * @param name
      * @param id
@@ -10,13 +10,14 @@ public class SalaryEmployee extends Employee {
      * @param ytdTaxesPaid
      * @param pretaxDeductions
      */
-    public SalaryEmployee(String name, String id, double payRate, double ytdEarnings, double ytdTaxesPaid, double pretaxDeductions) {
+    public SalaryEmployee(String name, String id, double payRate, double ytdEarnings, double ytdTaxesPaid,
+                          double pretaxDeductions) {
         super(name, id, payRate, ytdEarnings, ytdTaxesPaid, pretaxDeductions);
     }
 
     @Override
     public String getEmployeeType() {
-        return EMPLOYEE_TYPE;
+        return EMPLOYEETYPE;
     } // set employee type as SALARY
 
     /**
@@ -49,7 +50,7 @@ public class SalaryEmployee extends Employee {
      * @return the pay stub for the current pay period
      */
 
-    public double calculateGrossPay(double hoursWorked){
+    public double calculateGrossPay(double hoursWorked) {
         double payRate = getPayRate();
         return payRate / 24;
     }

@@ -102,20 +102,19 @@ public interface IEmployee {
      */
     double runPayroll(double hoursWorked);
 
-
+    /**
+     * Calculate grossPay and return it.
+     * @param hoursWorked
+     * @return grossPay
+     */
     double calculateGrossPay(double hoursWorked);
 
     /**
      * Converts the employee to a CSV string.
-     * 
      * Format of the String s as follows:
-     * 
      * employee_type,name,ID,payRate,pretaxDeductions,YTDEarnings,YTDTaxesPaid
-     * 
      * employee_type has the options for HOURLY or SALARY.
-     * 
      * You do not have to worry about commas in the name or any other field.
-     * 
      * @return the employee as a CSV string
      */
     String toCSV();
