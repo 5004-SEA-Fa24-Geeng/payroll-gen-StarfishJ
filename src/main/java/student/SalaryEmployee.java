@@ -1,7 +1,11 @@
 package student;
 
 public class SalaryEmployee extends Employee {
-    private final String EMPLOYEETYPE = "SALARY";  //Employee type is "SALARY"
+    /**
+     * The type of employee, indicating a salaried position.
+     * This field is set to "SALARY" for salaried employees.
+     */
+    private final String employeeType = "SALARY";  //Employee type is "SALARY"
     /**
      * @param name
      * @param id
@@ -17,7 +21,7 @@ public class SalaryEmployee extends Employee {
 
     @Override
     public String getEmployeeType() {
-        return EMPLOYEETYPE;
+        return employeeType;
     } // set employee type as SALARY
 
     /**

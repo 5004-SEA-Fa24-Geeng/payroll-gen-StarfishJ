@@ -5,13 +5,13 @@ package student;
  * HourlyEmployee and SalaryEmployee.
  */
 public abstract class Employee implements IEmployee {
-    private String name;
-    private String id;
-    private double payRate;
-    private double ytdEarnings;
-    private double ytdTaxesPaid;
-    private double pretaxDeductions;
-    protected final double taxRate = 0.2265;  //The tax rate is 22.65%
+    private String name;                    //Employee name
+    private String id;                      //Employee ID
+    private double payRate;                 //Employee pay rate
+    private double ytdEarnings;             //ytdEarnings
+    private double ytdTaxesPaid;            //ytdTaxesPaid
+    private double pretaxDeductions;        //pretaxDeductions
+    private final double taxRate = 0.2265;  //The tax rate is 22.65%
 
     /**
      * Constructor with parameters.

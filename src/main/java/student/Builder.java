@@ -44,10 +44,9 @@ public final class Builder {
                         Double.parseDouble(a[6]),
                         Double.parseDouble(a[4]));
             }
-        }
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             System.out.println("CSV contains incorrect number");
-        }
+            }
         return null;
     }
    /**

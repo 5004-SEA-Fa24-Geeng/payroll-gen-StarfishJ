@@ -1,6 +1,9 @@
 package student;
 
 public class TimeCard implements ITimeCard {
+    /**
+     * The TimeCard object contains employee ID and hoursWorked.
+     */
     private String employeeID;      //employee ID
     private double hoursWorked;     //hours of work done
 

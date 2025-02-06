@@ -1,8 +1,12 @@
 package student;
 
 public class HourlyEmployee extends Employee {
-    private final String EMPLOYEETYPE = "HOURLY";   // Employee Type is HOURLY
-    private static final double OVERTIMEMULTIPLIER = 1.5; // The overtime multiplier is 1.5
+    /**
+     * The type of employee, indicating a hourly position.
+     * This field is set to "HOURLY" for hourly employees.
+     */
+    private final String employeeType = "HOURLY";           // Employee Type is HOURLY
+    private static final double OVERTIMEMULTIPLIER = 1.5;   // The overtime multiplier is 1.5
     /**
      * @param name
      * @param id
@@ -27,7 +31,7 @@ public class HourlyEmployee extends Employee {
      */
     @Override
     public String getEmployeeType() {
-        return EMPLOYEETYPE;
+        return employeeType;
     }
 
     /**
