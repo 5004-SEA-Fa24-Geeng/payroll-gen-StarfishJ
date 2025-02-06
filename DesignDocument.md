@@ -208,32 +208,13 @@ direction BT
 class Arguments {
   - Arguments() 
   - String employeeFile
-  - String payrollFile
   - String timeCards
-  + printHelp() void
+  - String payrollFile
+  + getPayrollFile() String
   + process(String[]) Arguments
   + getTimeCards() String
+  + printHelp() void
   + getEmployeeFile() String
-  + getPayrollFile() String
-}
-class IEmployee {
-<<Interface>>
-  + getEmployeeType() String
-  + runPayroll(double) double
-  + getPayRate() double
-  + calculateGrossPay(double) double
-  + getName() String
-  + getYTDTaxesPaid() double
-  + getPretaxDeductions() double
-  + toCSV() String
-  + getID() String
-  + getYTDEarnings() double
-}
-class IPayStub {
-<<Interface>>
-  + getPay() double
-  + toCSV() String
-  + getTaxesPaid() double
 }
 class Builder {
   - Builder() 
@@ -242,77 +223,95 @@ class Builder {
 }
 class Employee {
   + Employee(String, String, double, double, double, double) 
-  # String id
-  # double ytdEarnings
-  # double pretaxDeductions
-  # String name
-  # double ytdTaxesPaid
-  # double payRate
-  # double taxRate
+  - double ytdEarnings
+  - String name
+  - double payRate
+  - double pretaxDeductions
+  - String id
+  - double taxRate
+  - double ytdTaxesPaid
   + getPretaxDeductions() double
-  + getID() String
   + runPayroll(double) double
-  + calculateGrossPay(double) double
-  + getYTDEarnings() double
-  + toCSV() String
-  + getEmployeeType() String
-  + getYTDTaxesPaid() double
-  + getName() String
   + getPayRate() double
+  + getYTDTaxesPaid() double
+  + calculateGrossPay(double) double
+  + getID() String
+  + toCSV() String
+  + getName() String
+  + getEmployeeType() String
+  + getYTDEarnings() double
 }
 class FileUtil {
   - FileUtil() 
-  + String EMPLOYEE_HEADER
   + String PAY_STUB_HEADER
-  + writeFile(String, List~String~) void
+  + String EMPLOYEE_HEADER
   + writeFile(String, List~String~, boolean) void
+  + writeFile(String, List~String~) void
   + readFileToList(String) List~String~
 }
 class HourlyEmployee {
   + HourlyEmployee(String, String, double, double, double, double) 
-  - String EMPLOYEE_TYPE
-  - double OVERTIME_MULTIPLIER
+  - double OVERTIMEMULTIPLIER
+  - String employeeType
+  + calculateGrossPay(double) double
+  + getEmployeeType() String
+}
+class IEmployee {
+<<Interface>>
+  + getName() String
+  + getPretaxDeductions() double
+  + runPayroll(double) double
+  + getID() String
+  + getPayRate() double
   + getEmployeeType() String
   + calculateGrossPay(double) double
+  + toCSV() String
+  + getYTDTaxesPaid() double
+  + getYTDEarnings() double
 }
-
-class PayStub {
-  + PayStub(String, double, double, double, double) 
-  - String employeeName
-  - double netPay
-  - double ytdTaxesPaid
-  - double ytdEarnings
-  - double taxesPaid
-  + getYtdTaxesPaid() double
+class IPayStub {
+<<Interface>>
   + getTaxesPaid() double
   + toCSV() String
   + getPay() double
-  + getYtdEarnings() double
-}
-class PayrollGenerator {
-  - PayrollGenerator() 
-  - String DEFAULT_PAYROLL_FILE
-  - String DEFAULT_EMPLOYEE_FILE
-  - String DEFAULT_TIME_CARD_FILE
-  + main(String[]) void
-}
-class SalaryEmployee {
-  + SalaryEmployee(String, String, double, double, double, double) 
-  - String EMPLOYEE_TYPE
-  + calculateGrossPay(double) double
-  + getEmployeeType() String
 }
 class ITimeCard {
 <<Interface>>
   + getEmployeeID() String
   + getHoursWorked() double
 }
+class PayStub {
+  + PayStub(String, double, double, double, double) 
+  - String employeeName
+  - double netPay
+  - double taxesPaid
+  - double ytdEarnings
+  - double ytdTaxesPaid
+  + getYtdTaxesPaid() double
+  + getYtdEarnings() double
+  + getPay() double
+  + getTaxesPaid() double
+  + toCSV() String
+}
+class PayrollGenerator {
+  - PayrollGenerator() 
+  - String DEFAULT_TIME_CARD_FILE
+  - String DEFAULT_EMPLOYEE_FILE
+  - String DEFAULT_PAYROLL_FILE
+  + main(String[]) void
+}
+class SalaryEmployee {
+  + SalaryEmployee(String, String, double, double, double, double) 
+  - String employeeType
+  + getEmployeeType() String
+  + calculateGrossPay(double) double
+}
 class TimeCard {
   + TimeCard(String, double) 
-  - double hoursWorked
   - String employeeID
-  + getEmployeeID() String
+  - double hoursWorked
   + getHoursWorked() double
+  + getEmployeeID() String
 }
 
 PayrollGenerator --> Arguments  : "uses"
@@ -334,9 +333,7 @@ TimeCard ..> ITimeCard  : "implements"
 FileUtil --> IEmployee  : "reads/writes"
 FileUtil --> IPayStub   : "reads/writes"
 FileUtil --> ITimeCard  : "reads/writes"
-
 ```
-
 
 
 
@@ -348,6 +345,6 @@ FileUtil --> ITimeCard  : "reads/writes"
 
 Take time to reflect on how your design has changed. Write in *prose* (i.e. do not bullet point your answers - it matters in how our brain processes the information). Make sure to include what were some major changes, and why you made them. What did you learn from this process? What would you do differently next time? What was the most challenging part of this process? For most students, it will be a paragraph or two. 
 * The major change I make is changing my code in PayrollGenerator. I got confused about what elements to include in payStub object. I was trying to build a payStub object by referencing to employee object, but I don't know how to make the reference in detail. After checking the output I realize I just need to assign the parameter in PayRollGenerator and that's all. 
-* Another part is remaking several functions as I kept getting errors in the output number. I didn't pay attention to the sequence of certain codes when I tried to update ytdEarnings in runPayroll method so the result was revised more than once. 
+* Another part is remaking several functions as I kept getting errors in the output number. I didn't pay attention to the sequence of certain codes when I tried to update ytdEarnings in runPayroll method so the result was revised more than once. I also change some fields from protected to private to avoid unnecessary access.
 * The most challenging part is debugging, as I have to add println in different places before tracking down the actual issue. I still feel it's difficult to have a general idea of which class should be in charge of what function while reading the instruction. 
 * What I learned from this process is how to remove repetitive or redundant codes by using abstract classes and interfaces. And also I learned from practice and some key functions to help with the process.
