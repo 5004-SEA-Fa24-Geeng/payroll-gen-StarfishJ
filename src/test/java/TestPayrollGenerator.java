@@ -41,7 +41,9 @@ public class TestPayrollGenerator {
 
         String actualPayStubs = Files.readString(payStubs);
 
-        assertEquals(expectedPayStubs, actualPayStubs);
+
+        assertEquals(expectedPayStubs.replace("\r\n", "\n"),
+                actualPayStubs.replace("\r\n", "\n"));
 
 
         // you could also read lines and compared the lists
