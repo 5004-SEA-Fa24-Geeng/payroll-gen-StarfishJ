@@ -171,7 +171,7 @@ public abstract class Employee implements IEmployee {
         ytdTaxesPaid += taxes;
         double netPay = grossPay - pretaxDeductions - taxes;
         if (netPay >= 0) {
-            ytdEarnings += Math.floor(netPay * 1000)/1000 - 0.001;  //adjust result
+            ytdEarnings += Math.floor(netPay * 1000) / 1000 - 0.001;  //adjust result
         }
         return new PayStub(name, netPay, taxes, ytdEarnings, ytdTaxesPaid);
     }
