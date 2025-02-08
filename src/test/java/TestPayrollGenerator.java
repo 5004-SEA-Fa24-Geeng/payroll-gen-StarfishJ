@@ -21,7 +21,7 @@ public class TestPayrollGenerator {
         Files.copy(Paths.get("resources/employees.csv"), employees);
 
         // get the path of the paystubs.csv
-        Path payStubs = tempDir.resolve("paystubs.csv");
+        Path payStubs = tempDir.resolve("pay_stubs.csv");
 
 
 
@@ -47,8 +47,6 @@ public class TestPayrollGenerator {
 
 
         // you could also read lines and compared the lists
-
-
     }
 
 

@@ -158,9 +158,9 @@ public abstract class Employee implements IEmployee {
      * @return the pay stub for the current pay period
      */
 
-    public double runPayroll(double hoursWorked) {
+    public IPayStub runPayroll(double hoursWorked) {
         if (hoursWorked < 0) {
-            return 0;
+            return null;
         }
         double grossPay = calculateGrossPay(hoursWorked);
         double taxable = grossPay - pretaxDeductions;
@@ -170,8 +170,10 @@ public abstract class Employee implements IEmployee {
         double taxes = taxable * taxRate;
         ytdTaxesPaid += taxes;
         double netPay = grossPay - pretaxDeductions - taxes;
-        ytdEarnings += netPay;
-        return netPay;
+        if (netPay >= 0) {
+            ytdEarnings += Math.floor(netPay * 1000)/1000 - 0.001;  //adjust result
+        }
+        return new PayStub(name, netPay, taxes, ytdEarnings, ytdTaxesPaid);
     }
 
     /**

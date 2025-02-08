@@ -70,14 +70,9 @@ public final class PayrollGenerator {
                     double previousYTDTaxes = employee.getYTDTaxesPaid();
 
                     // Run payroll (updates YTD values)
-                    double netPay = employee.runPayroll(hoursWorked);
-
-                    // Calculate actual taxes paid
-                    double taxes = employee.getYTDTaxesPaid() - previousYTDTaxes;
-
-                    if (netPay >= 0) {
-                        payStubs.add(new PayStub(employee.getName(), netPay, taxes, employee.getYTDEarnings(),
-                                employee.getYTDTaxesPaid()));
+                    IPayStub tmp = (IPayStub) employee.runPayroll(hoursWorked);
+                    if (tmp.getPay() >= 0) {
+                        payStubs.add(tmp);
                     }
                 }
             }

@@ -100,7 +100,7 @@ public interface IEmployee {
      * @param hoursWorked the hours worked for the pay period
      * @return the pay stub for the current pay period
      */
-    double runPayroll(double hoursWorked);
+    Object runPayroll(double hoursWorked);
 
     /**
      * Calculate grossPay and return it.
